@@ -1,1 +1,4 @@
 *.swp
+config.json
+database/postgresql
+docker-compose.yml

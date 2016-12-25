@@ -1,0 +1,49 @@
+{{define "/view/month/"}}
+
+{{ $year := .Year}}
+{{ $month := .Month}}
+{{ $days := dateFillMonth .Days}}
+
+<nav aria-label="months">
+	<ul class="pagination">
+		<li>
+			<a href="/view/month/{{datePreviousMonth $year $month}}" aria-label="previous month">
+				<span aria-hidden="true">&laquo; previous</span></a>
+		</li>
+		<li>
+			<a href="/view/month/{{dateCurrentMonth}}" aria-label="previous month">
+				<span aria-hidden="true">current</span></a>
+		</li>
+		<li>
+			<a href="/view/month/{{dateNextMonth $year $month}}" aria-label="next month">
+				<span aria-hidden="true">next &raquo;</span></a>
+		</li>
+
+	</ul>
+</nav>
+
+<table class="table table-responsive table-bordered">
+	<thead class="table-condensed">
+		<th class="calendar-head">monday</th>
+		<th class="calendar-head">tuesday</th>
+		<th class="calendar-head">wednesday</th>
+		<th class="calendar-head">thursday</th>
+		<th class="calendar-head">friday</th>
+		<th class="calendar-head">saturday</th>
+		<th class="calendar-head">sunday</th>
+	</thead>
+
+	<tbody>
+		<tr>
+			{{ range $days }}
+			<td class="calendar-cell
+			{{if ne (dateMonth .Date) $month}} calendar-cell-othermonth {{end}}">{{dateDay .Date}}</td>
+			{{ if (eq (dateWeekdayID .Weekday) 0) and (eq (dateMonth .Date) $month)}}
+		</tr>
+		<tr>
+			{{end}}
+			{{end}}
+		</tr>
+	</tbody>
+</table>
+{{end}}
