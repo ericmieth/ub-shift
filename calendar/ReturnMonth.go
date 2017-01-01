@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"database/sql"
-	_ "github.com/lib/pq"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // returns all days belonging to a day
@@ -28,9 +28,9 @@ func ReturnMonth(
 		FROM
 			day AS d
 		WHERE
-			date_part('year', d.date) = $1
+			YEAR(d.date) = ?
 			AND
-			date_part('month', d.date) = $2
+			MONTH(d.date) = ?
 		ORDER BY
 			d.date ASC`,
 		year,

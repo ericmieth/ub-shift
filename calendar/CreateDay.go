@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"database/sql"
-	_ "github.com/lib/pq"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // insert a row in table 'day'
@@ -17,7 +17,7 @@ func CreateDay(db *sql.DB, t time.Time) error {
 		date,
 		weekday_id
 	)
-	VALUES ($1, $2)`,
+	VALUES (?, ?)`,
 		t.Format("2006-01-02"),
 		t.Weekday(),
 	)

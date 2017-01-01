@@ -3,7 +3,6 @@ package view
 import (
 	"github.com/ericmieth/ub-shift/calendar"
 
-	//"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,7 +10,6 @@ import (
 	"time"
 
 	"database/sql"
-	_ "github.com/lib/pq"
 )
 
 func ViewMonthHandler(
