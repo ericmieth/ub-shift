@@ -30,8 +30,9 @@ func BranchListHandler(
 		TemplateName string
 		ContentData  interface{}
 		StartTime    time.Time
+		Error        error
 	}{
-		PageTitle:    "Standorte",
+		PageTitle:    "Zweigstellen",
 		TemplateName: "/branch/list/",
 		ContentData:  branches,
 		StartTime:    startTime,

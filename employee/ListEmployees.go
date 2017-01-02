@@ -7,7 +7,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-// returns all days belonging to a day
+// returns all employees
+
 func ListEmployees(
 	db *sql.DB,
 ) (
@@ -50,8 +51,6 @@ func ListEmployees(
 			&e.Active,
 			&e.WorkingHours,
 		)
-
-		log.Println(e)
 
 		emplyees = append(emplyees, e)
 	}

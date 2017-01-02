@@ -44,8 +44,6 @@ func ListBranches(
 			&b.Location,
 		)
 
-		log.Println(b)
-
 		branches = append(branches, b)
 	}
 

@@ -59,6 +59,7 @@ func CalendarViewMonthHandler(
 		TemplateName string
 		ContentData  interface{}
 		StartTime    time.Time
+		Error        error
 	}{
 		PageTitle:    "Monatsansicht",
 		TemplateName: "/calendar/month/",

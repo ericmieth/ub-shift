@@ -64,6 +64,14 @@ func main() {
 		argsHandler(view.EmployeeListHandler, db, t),
 	)
 
+	http.HandleFunc("/branch/list/",
+		argsHandler(view.BranchListHandler, db, t),
+	)
+
+	http.HandleFunc("/branch/add/",
+		argsHandler(view.BranchAddHandler, db, t),
+	)
+
 	http.HandleFunc("/",
 		argsHandler(view.IndexHandler, db, t),
 	)

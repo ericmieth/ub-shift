@@ -30,6 +30,7 @@ func EmployeeListHandler(
 		TemplateName string
 		ContentData  interface{}
 		StartTime    time.Time
+		Error        error
 	}{
 		PageTitle:    "Mitarbeiter",
 		TemplateName: "/employee/list/",

@@ -14,7 +14,7 @@
 		<!--<link rel="icon" href="/static/images/favicon.ico">-->
 
 		<!--<script type="text/javascript" src="/static/js/collapse.js"></script>-->
-		<title>ub shift</title>
+		<title>UB Schichtplan</title>
 
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
@@ -34,10 +34,14 @@
 		<!-- Begin page content -->
 		<div class="container">
 			<div class="page-header">
-				<h1>Monatsansicht</h1>
+				<h1>{{.PageTitle}}</h1>
 			</div>
 			<p class="lead">…</p>
 
+			{{with .Error}}
+			{{callTemplate "error" .}}
+			{{end}}
+			
 			<div class="row col-md-12">
 				{{callTemplate $name $data }}
 			</div>

@@ -1,0 +1,12 @@
+{{define "error"}}
+{{with .}}
+<div class="row">
+	<div class="alert alert-danger col-md-12" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Fehler:</span>
+		{{.}}
+	</div>
+</div>
+{{end}}
+{{end}}
+
