@@ -1,0 +1,18 @@
+{{define "/branch/list/"}}
+
+<table class="table table-responsive table-bordered">
+	<thead class="table-condensed">
+		<th class="calendar-head">Name</th>
+		<th class="calendar-head">Adresse</th>
+	</thead>
+
+	<tbody>
+		{{ range .}}
+		<tr>
+			<td>{{.Name}}</td>
+			<td>{{.Location}}</td>
+		</tr>
+		{{end}}
+	</tbody>
+</table>
+{{end}}

@@ -32,5 +32,13 @@ CREATE TABLE `employee` (
 	UNIQUE(`mailaddress`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `counter` (
+	`id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+	`name` varchar(200) NOT NULL,
+	`location` varchar(200) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE(`name`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 
