@@ -47,7 +47,7 @@ func main() {
 		),
 	)
 
-	http.HandleFunc("/view/month/", argsHandler(view.ViewMonthHandler, db, t))
+	http.HandleFunc("/calendar/month/", argsHandler(view.CalendarViewMonthHandler, db, t))
 	http.HandleFunc("/", argsHandler(view.IndexHandler, db, t))
 
 	http.ListenAndServe(":9002", nil)

@@ -13,7 +13,7 @@ import (
 	"database/sql"
 )
 
-func ViewMonthHandler(
+func CalendarViewMonthHandler(
 	w http.ResponseWriter,
 	r *http.Request,
 	db *sql.DB,
