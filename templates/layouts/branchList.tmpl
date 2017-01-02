@@ -1,5 +1,22 @@
 {{define "/branch/list/"}}
 
+<div class="row">
+	<nav aria-label="actions">
+		<ul class="pagination">
+			<li>
+				<a href="/branch/add/" aria-label="next month">
+					<span aria-hidden="true">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						Zweigstelle hinzufügen</span></a>
+			</li>
+
+		</ul>
+	</nav>
+
+</div>
+
+
+<div class="row">
 <table class="table table-responsive table-bordered">
 	<thead class="table-condensed">
 		<th class="calendar-head">Name</th>
@@ -15,4 +32,5 @@
 		{{end}}
 	</tbody>
 </table>
+</div>
 {{end}}
