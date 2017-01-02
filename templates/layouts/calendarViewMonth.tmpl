@@ -4,46 +4,50 @@
 {{ $month := .Month}}
 {{ $days := dateFillMonth .Days}}
 
-<nav aria-label="months">
-	<ul class="pagination">
-		<li>
-			<a href="/view/month/{{datePreviousMonth $year $month}}" aria-label="previous month">
-				<span aria-hidden="true">&laquo; vorheriger</span></a>
-		</li>
-		<li>
-			<a href="/view/month/{{dateCurrentMonth}}" aria-label="previous month">
-				<span aria-hidden="true">aktuell</span></a>
-		</li>
-		<li>
-			<a href="/view/month/{{dateNextMonth $year $month}}" aria-label="next month">
-				<span aria-hidden="true">nächster &raquo;</span></a>
-		</li>
+<div class="row">
+	<nav aria-label="months">
+		<ul class="pagination">
+			<li>
+				<a href="/view/month/{{datePreviousMonth $year $month}}" aria-label="previous month">
+					<span aria-hidden="true">&laquo; vorheriger</span></a>
+			</li>
+			<li>
+				<a href="/view/month/{{dateCurrentMonth}}" aria-label="previous month">
+					<span aria-hidden="true">aktuell</span></a>
+			</li>
+			<li>
+				<a href="/view/month/{{dateNextMonth $year $month}}" aria-label="next month">
+					<span aria-hidden="true">nächster &raquo;</span></a>
+			</li>
 
-	</ul>
-</nav>
+		</ul>
+	</nav>
+</div>
 
-<table class="table table-responsive table-bordered">
-	<thead class="table-condensed">
-		<th class="calendar-head">Montang</th>
-		<th class="calendar-head">Dienstag</th>
-		<th class="calendar-head">Mittwoch</th>
-		<th class="calendar-head">Donnerstag</th>
-		<th class="calendar-head">Freitag</th>
-		<th class="calendar-head">Samstag</th>
-		<th class="calendar-head">Sonntag</th>
-	</thead>
+<div class="row">
+	<table class="table table-responsive table-bordered">
+		<thead class="table-condensed">
+			<th class="calendar-head">Montang</th>
+			<th class="calendar-head">Dienstag</th>
+			<th class="calendar-head">Mittwoch</th>
+			<th class="calendar-head">Donnerstag</th>
+			<th class="calendar-head">Freitag</th>
+			<th class="calendar-head">Samstag</th>
+			<th class="calendar-head">Sonntag</th>
+		</thead>
 
-	<tbody>
-		<tr>
-			{{ range $days }}
-			<td class="calendar-cell
-			{{if ne (dateMonth .Date) $month}} calendar-cell-othermonth {{end}}">{{dateDay .Date}}</td>
-			{{ if (eq (dateWeekdayID .Weekday) 0) and (eq (dateMonth .Date) $month)}}
-		</tr>
-		<tr>
-			{{end}}
-			{{end}}
-		</tr>
-	</tbody>
-</table>
+		<tbody>
+			<tr>
+				{{ range $days }}
+				<td class="calendar-cell
+				{{if ne (dateMonth .Date) $month}} calendar-cell-othermonth {{end}}">{{dateDay .Date}}</td>
+				{{ if (eq (dateWeekdayID .Weekday) 0) and (eq (dateMonth .Date) $month)}}
+			</tr>
+			<tr>
+				{{end}}
+				{{end}}
+			</tr>
+		</tbody>
+	</table>
+</div>
 {{end}}
