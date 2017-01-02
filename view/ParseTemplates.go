@@ -15,6 +15,8 @@ func ParseTemplates() *template.Template {
 		"dateNextMonth":     funcs.DateNextMonth,
 		"datePreviousMonth": funcs.DatePreviousMonth,
 		"dateCurrentMonth":  funcs.DateCurrentMonth,
+		"checked":           funcs.Checked,
+		"nullFloat64":       funcs.NullFloat64,
 	}
 	return template.Must(
 		template.New("content").

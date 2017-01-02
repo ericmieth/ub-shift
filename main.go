@@ -24,6 +24,15 @@ func main() {
 			http.FileServer(http.Dir("static/bootstrap/dist/")),
 		),
 	)
+
+	http.Handle(
+		"/static/fonts/",
+		http.StripPrefix(
+			"/static/fonts/",
+			http.FileServer(http.Dir("static/fonts/")),
+		),
+	)
+
 	http.Handle(
 		"/static/bootstrap-modification/",
 		http.StripPrefix(
@@ -47,8 +56,17 @@ func main() {
 		),
 	)
 
-	http.HandleFunc("/calendar/month/", argsHandler(view.CalendarViewMonthHandler, db, t))
-	http.HandleFunc("/", argsHandler(view.IndexHandler, db, t))
+	http.HandleFunc("/calendar/month/",
+		argsHandler(view.CalendarViewMonthHandler, db, t),
+	)
+
+	http.HandleFunc("/employee/list/",
+		argsHandler(view.EmployeeListHandler, db, t),
+	)
+
+	http.HandleFunc("/",
+		argsHandler(view.IndexHandler, db, t),
+	)
 
 	http.ListenAndServe(":9002", nil)
 }

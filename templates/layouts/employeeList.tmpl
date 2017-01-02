@@ -1,0 +1,27 @@
+{{define "/employee/list/"}}
+
+<table class="table table-responsive table-bordered">
+	<thead class="table-condensed">
+		<th class="calendar-head">Vorname</th>
+		<th class="calendar-head">Nachname</th>
+		<th class="calendar-head">Mail-Adresse</th>
+		<th class="calendar-head">Manager</th>
+		<th class="calendar-head">aktiv</th>
+		<th class="calendar-head">Wochenarbeitsstunden</th>
+		<th class="calendar-head">Theken</th>
+	</thead>
+
+	<tbody>
+		{{ range .}}
+		<tr>
+			<td>{{.FirstName}}</td>
+			<td>{{.LastName}}</td>
+			<td>{{.MailAddress}}</td>
+			<td>{{checked .Manager}}</td>
+			<td>{{checked .Active}}</td>
+			<td>{{nullFloat64 .WorkingHours}}</td>
+		</tr>
+		{{end}}
+	</tbody>
+</table>
+{{end}}
