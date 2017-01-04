@@ -26,7 +26,11 @@
 	<tbody>
 		{{ range .}}
 		<tr>
-			<td>{{.Name}}</td>
+			<td>{{.Name}}
+			<a href="/branch/edit/{{.ID}}">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a>
+			</td>
 			<td>{{.Location}}</td>
 		</tr>
 		{{end}}

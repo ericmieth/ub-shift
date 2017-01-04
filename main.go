@@ -72,6 +72,10 @@ func main() {
 		argsHandler(view.BranchAddHandler, db, t),
 	)
 
+	http.HandleFunc("/branch/edit/",
+		argsHandler(view.BranchEditHandler, db, t),
+	)
+
 	http.HandleFunc("/",
 		argsHandler(view.IndexHandler, db, t),
 	)

@@ -9,8 +9,9 @@ import (
 
 // insert a branch into the database
 
-func AddBranch(
+func EditBranch(
 	db *sql.DB,
+	id int,
 	name, location string,
 ) []error {
 
@@ -33,12 +34,13 @@ func AddBranch(
 	}
 
 	_, e = db.Exec(`
-		INSERT INTO branch (
-			name,
-			location
-		) VALUES (?, ?)`,
+		UPDATE branch
+		SET name = ?,
+			location = ?
+		WHERE id = ?`,
 		name,
 		location,
+		id,
 	)
 
 	err = append(err, e)
