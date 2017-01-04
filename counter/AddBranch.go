@@ -1,7 +1,7 @@
 package counter
 
 import (
-	"log"
+	"errors"
 
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
@@ -14,6 +14,13 @@ func AddBranch(
 	name, location string,
 ) error {
 
+	if len(name) == 0 {
+		return errors.New("Der Name der Zweigstelle darf nicht leer sein.")
+	}
+
+	if len(location) == 0 {
+		return errors.New("Die Adresse der Zweigstelle darf nicht leer sein.")
+	}
 	_, err := db.Exec(`
 		INSERT INTO branch (
 			name,
@@ -24,7 +31,6 @@ func AddBranch(
 	)
 
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 
