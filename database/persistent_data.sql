@@ -24,3 +24,7 @@ INSERT INTO `branch` (name,location) VALUES
 ('Rechtswissenschaften', 'Burgstraße 27, 04109 Leipzig'),
 ('Sportwissenschaften', 'Jahnallee 59, 04109 Leipzig'),
 ('Verterinärmedizin', 'An den Tierkliniken 5, 04103 Leipzig');
+
+INSERT INTO `counter` (branch_id,name) VALUES
+('1', 'BIN-Raum (EG)'),
+('1', 'Servicetheke (2.OG)');

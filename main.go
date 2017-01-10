@@ -56,13 +56,19 @@ func main() {
 		),
 	)
 
+	// calendar
+
 	http.HandleFunc("/calendar/month/",
 		argsHandler(view.CalendarViewMonthHandler, db, t),
 	)
 
+	// employees
+
 	http.HandleFunc("/employee/list/",
 		argsHandler(view.EmployeeListHandler, db, t),
 	)
+
+	// branches
 
 	http.HandleFunc("/branch/list/",
 		argsHandler(view.BranchListHandler, db, t),
@@ -74,6 +80,20 @@ func main() {
 
 	http.HandleFunc("/branch/edit/",
 		argsHandler(view.BranchEditHandler, db, t),
+	)
+
+	// counters
+
+	http.HandleFunc("/counter/list/",
+		argsHandler(view.CounterListHandler, db, t),
+	)
+
+	http.HandleFunc("/counter/add/",
+		argsHandler(view.CounterAddHandler, db, t),
+	)
+
+	http.HandleFunc("/counter/edit/",
+		argsHandler(view.CounterEditHandler, db, t),
 	)
 
 	http.HandleFunc("/",

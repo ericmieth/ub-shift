@@ -9,43 +9,48 @@ import (
 
 // returns all branches
 
-func ListBranches(
+func ListCounters(
 	db *sql.DB,
 ) (
-	[]Branch,
+	[]Counter,
 	error,
 ) {
 
-	var branches []Branch
-	var b Branch
+	var counters []Counter
+	var c Counter
 
 	rows, err := db.Query(`
 		SELECT
-			b.id,
+			c.id,
+			c.name,
 			b.name,
 			b.location
 		FROM
-			branch AS b
+			counter AS c
+		JOIN
+			branch AS b ON c.branch_id = b.id
 		ORDER BY
-			b.name ASC`,
+			b.id ASC,
+			c.name ASC`,
 	)
 	defer rows.Close()
 
 	if err != nil {
 		log.Println(err)
-		return branches, err
+		return counters, err
 	}
 
 	for rows.Next() {
 
 		rows.Scan(
-			&b.ID,
-			&b.Name,
-			&b.Location,
+			&c.ID,
+			&c.Name,
+			&c.Branch.Name,
+			&c.Branch.Location,
 		)
 
-		branches = append(branches, b)
+		counters = append(counters, c)
 	}
 
-	return branches, err
+	return counters, err
 }

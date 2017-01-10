@@ -9,10 +9,11 @@ import (
 
 // insert a branch into the database
 
-func EditBranch(
+func EditCounter(
 	db *sql.DB,
-	id int,
-	name, location string,
+	counterID int,
+	name string,
+	branch int,
 ) []error {
 
 	var e error
@@ -23,11 +24,6 @@ func EditBranch(
 		err = append(err, e)
 	}
 
-	if len(location) == 0 {
-		e = errors.New("Die Adresse der Zweigstelle darf nicht leer sein.")
-		err = append(err, e)
-	}
-
 	// return if an error occurred
 	if checkErrors(err) {
 		return err
@@ -35,15 +31,15 @@ func EditBranch(
 
 	_, e = db.Exec(`
 		UPDATE
-			branch
+			counter
 		SET
 			name = ?,
-			location = ?
+			branch_id = ?
 		WHERE
 			id = ?`,
 		name,
-		location,
-		id,
+		branch,
+		counterID,
 	)
 
 	err = append(err, e)

@@ -31,5 +31,13 @@ CREATE TABLE `branch` (
 	UNIQUE(`name`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `counter` (
+	`id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+	`branch_id` smallint(4) unsigned NOT NULL,
+	`name` varchar(200) NOT NULL,
+	PRIMARY KEY (`id`),
+	CONSTRAINT FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 

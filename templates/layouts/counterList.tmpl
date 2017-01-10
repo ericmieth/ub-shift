@@ -1,0 +1,40 @@
+{{define "/counter/list/"}}
+
+<div class="row">
+	<nav aria-label="actions">
+		<ul class="pagination">
+			<li>
+				<a href="/counter/add/" aria-label="next month">
+					<span aria-hidden="true">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						Theke hinzufügen</span></a>
+			</li>
+
+		</ul>
+	</nav>
+
+</div>
+
+
+<div class="row">
+<table class="table table-responsive table-bordered">
+	<thead class="table-condensed">
+		<th class="calendar-head">Name</th>
+		<th class="calendar-head">Zweigstelle</th>
+	</thead>
+
+	<tbody>
+		{{ range .}}
+		<tr>
+			<td>{{.Name}}
+			<a href="/counter/edit/{{.ID}}">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a>
+			</td>
+			<td>{{.Branch.Name}} <small>({{.Branch.Location}})</small></td>
+		</tr>
+		{{end}}
+	</tbody>
+</table>
+</div>
+{{end}}

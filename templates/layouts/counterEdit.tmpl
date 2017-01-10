@@ -1,0 +1,32 @@
+{{define "/counter/edit/"}}
+{{$BranchID := .BranchID}}
+
+<div class="row">
+
+	<form class="form-horizontal" role="form" action="/counter/edit/{{.CounterID}}" method="post">
+		<div class="form-group">
+			<label class="control-label col-sm-2 col-sm-offset-3" for="name">Name</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="name" name="name" value="{{.CounterName}}" autofocus required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2 col-sm-offset-3" for="branch">Zweigstelle</label>
+			<div class="col-sm-4">
+				<select id="branch" name="branch"  class="form-control" >
+					{{ range .BranchList }}
+					<option value="{{.ID}}" {{if eq .ID $BranchID}}selected{{end}}>{{.Name}}</option>
+					{{ end }}
+				</select>
+			</div>
+		</div>
+		<div class="form-group"> 
+			<div class="col-sm-offset-5 col-sm-1">
+				<button type="submit" class="btn btn-success">speichern</button>
+			</div>
+		</div>
+	</form>
+
+
+</div>
+{{end}}
