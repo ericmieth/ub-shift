@@ -5,9 +5,10 @@ CREATE TABLE `weekday` (
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `day` (
+	`id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
 	`date` DATE NOT NULL,
 	`weekday_id` smallint(4) unsigned NOT NULL,
-	PRIMARY KEY (`date`),
+	PRIMARY KEY (`id`),
 	CONSTRAINT FOREIGN KEY (`weekday_id`) REFERENCES `weekday` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -38,6 +39,3 @@ CREATE TABLE `counter` (
 	PRIMARY KEY (`id`),
 	CONSTRAINT FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
-

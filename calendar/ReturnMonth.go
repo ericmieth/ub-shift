@@ -23,6 +23,7 @@ func ReturnMonth(
 
 	rows, err := db.Query(`
 		SELECT
+			d.id,
 			d.date,
 			d.weekday_id
 		FROM
@@ -46,6 +47,7 @@ func ReturnMonth(
 
 		var dateString string
 		rows.Scan(
+			&d.ID,
 			&dateString,
 			&d.Weekday,
 		)
