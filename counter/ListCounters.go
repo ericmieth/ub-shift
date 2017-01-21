@@ -48,6 +48,7 @@ func ListCounters(
 			&c.Branch.Name,
 			&c.Branch.Location,
 		)
+		c.BusinessHours = ListBusinessHoursForACounter(db, c.ID)
 
 		counters = append(counters, c)
 	}

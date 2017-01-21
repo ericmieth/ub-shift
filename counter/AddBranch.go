@@ -8,11 +8,16 @@ import (
 )
 
 // insert a branch into the database
+// returns the inserted id and a slice of errors
 
 func AddBranch(
 	db *sql.DB,
-	name, location string,
-) []error {
+	name string,
+	location string,
+) (
+	int64,
+	[]error,
+) {
 
 	var e error
 	var err []error
@@ -29,10 +34,10 @@ func AddBranch(
 
 	// return if an error occurred
 	if checkErrors(err) {
-		return err
+		return 0, err
 	}
 
-	_, e = db.Exec(`
+	res, e := db.Exec(`
 		INSERT INTO branch (
 			name,
 			location
@@ -40,7 +45,16 @@ func AddBranch(
 		name,
 		location,
 	)
+	if e != nil {
+		err = append(err, e)
+	}
 
-	err = append(err, e)
-	return err
+	lastInsertID, e := res.LastInsertId()
+	if e != nil {
+		err = append(err, e)
+		return 0, err
+	}
+
+	return lastInsertID, err
+
 }

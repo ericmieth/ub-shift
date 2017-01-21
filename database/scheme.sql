@@ -39,3 +39,21 @@ CREATE TABLE `counter` (
 	PRIMARY KEY (`id`),
 	CONSTRAINT FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `businesshour` (
+	`id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+	`opening` TIME NOT NULL,
+	`closing` TIME NOT NULL,
+	UNIQUE(`opening`,`closing`),
+	PRIMARY KEY (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `counter_businesshour_weekday` (
+	`counter_id` smallint(4) unsigned NOT NULL,
+	`businesshour_id` smallint(4) unsigned NOT NULL,
+	`weekday_id` smallint(4) unsigned NOT NULL,
+	PRIMARY KEY (`counter_id`,`businesshour_id`,`weekday_id`),
+	CONSTRAINT FOREIGN KEY (`counter_id`) REFERENCES `counter` (`id`),
+	CONSTRAINT FOREIGN KEY (`businesshour_id`) REFERENCES `businesshour` (`id`),
+	CONSTRAINT FOREIGN KEY (`weekday_id`) REFERENCES `weekday` (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

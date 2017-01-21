@@ -96,6 +96,14 @@ func main() {
 		argsHandler(view.CounterEditHandler, db, t),
 	)
 
+	// businesshours
+
+	http.HandleFunc("/businesshour/edit/",
+		argsHandler(view.BusinesshourEditHandler, db, t),
+	)
+
+	// index
+
 	http.HandleFunc("/",
 		argsHandler(view.IndexHandler, db, t),
 	)

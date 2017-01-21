@@ -1,0 +1,94 @@
+{{define "/businesshour/edit/"}}
+{{$counterID := .Counter.ID}}
+
+{{.Counter.Name}} <small>({{.Counter.Branch.Location}})</small>
+
+{{range .Days}}
+{{$weekdayID := .ID}}
+<div class="panel panel-default" id="{{.Name}}">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{.Name}}</h3>
+	</div>
+	<div class="panel-body">
+		momentan hinterlegte Geschäftszeiten:
+		<ul>
+			{{range .AssignedBusinessHours}}
+			<li>{{ time .Opening}} - {{ time .Closing}}</li>
+			{{end}}
+		</ul>
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<form class="form-horizontal" role="form" action="/businesshour/edit/{{$counterID}}#{{.Name}}" method="post">
+					<div class="panel panel-default">
+						<div class="panel-heading">bestehende Geschäftszeit zur Theke hinzufügen</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<select class="form-control" name="businesshourID">
+									{{range .RemainingBusinessHours}}
+									<option value="{{.ID}}">{{ time .Opening}} - {{ time .Closing}}</option>
+									{{end}}
+								</select>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<input type="hidden" name="action" value="assign">
+							<input type="hidden" name="weekday" value="{{$weekdayID}}">
+							<button type="submit" class="btn btn-success">speichern</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<form class="form-horizontal" role="form" action="/businesshour/edit/{{$counterID}}#{{.Name}}" method="post">
+					<div class="panel panel-default">
+						<div class="panel-heading">neue Geschäftszeit anlegen und der Theke hinzufügen</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="control-label" for="opening">Beginn</label>
+								<input type="text" class="form-control" id="opening" name="opening" value="" placeholder="">
+
+								<label class="control-label" for="closing">Ende</label>
+								<input type="text" class="form-control" id="closing" name="closing" value="" placeholder="">
+							</div>
+						</div>
+						<div class="panel-footer">
+							<input type="hidden" name="action" value="create-assign">
+							<input type="hidden" name="weekday" value="{{$weekdayID}}">
+							<button type="submit" class="btn btn-success">speichern</button>
+						</div>
+				</form>
+					</div>
+
+
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<form class="form-horizontal" role="form" action="/businesshour/edit/{{$counterID}}#{{.Name}}" method="post">
+						<div class="panel panel-danger">
+							<div class="panel-heading">bestehende Geschäftszeit entfernen</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<select class="form-control" name="businesshourID">
+										{{range .AssignedBusinessHours}}
+										<option value="{{.ID}}">{{ time .Opening}} - {{ time .Closing}}</option>
+										{{end}}
+									</select>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<input type="hidden" name="action" value="remove">
+								<input type="hidden" name="weekday" value="{{$weekdayID}}">
+								<button type="submit" class="btn btn-danger">entfernen</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{{end}}
+{{end}}

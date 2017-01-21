@@ -17,24 +17,150 @@
 
 
 <div class="row">
-<table class="table table-responsive table-bordered">
-	<thead class="table-condensed">
-		<th class="calendar-head">Name</th>
-		<th class="calendar-head">Zweigstelle</th>
-	</thead>
+	<table class="table table-responsive table-bordered table-hover">
+		<thead class="table-condensed">
+			<tr>
+				<th rowspan="2" class="calendar-head">Name</th>
+				<th rowspan="2" class="calendar-head">Zweigstelle</th>
+				<th colspan="7" class="text-center">Geschäftszeiten</th>
+			</tr>
+			<tr>
+				<th class="calendar-head">Montag</th>
+				<th class="calendar-head">Dienstag</th>
+				<th class="calendar-head">Mittwoch</th>
+				<th class="calendar-head">Donnerstag</th>
+				<th class="calendar-head">Freitag</th>
+				<th class="calendar-head">Samstag</th>
+				<th class="calendar-head">Sonntag</th>
+			</tr>
+		</thead>
 
-	<tbody>
-		{{ range .}}
-		<tr>
-			<td>{{.Name}}
-			<a href="/counter/edit/{{.ID}}">
-				<span class="glyphicon glyphicon-edit"></span>
-			</a>
-			</td>
-			<td>{{.Branch.Name}} <small>({{.Branch.Location}})</small></td>
-		</tr>
-		{{end}}
-	</tbody>
-</table>
+		<tbody>
+			{{ range .}}
+			<tr>
+				<td>{{.Name}}
+					<p class="text-right">
+					<a href="/counter/edit/{{.ID}}">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>{{.Branch.Name}} <small>({{.Branch.Location}})</small></td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 1 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Montag">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 2 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Dienstag">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 3 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Mittwoch">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 4 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Donnerstag">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 5 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Freitag">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 6 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Samstag">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+				<td>
+					<small>
+						<ul>
+							{{range .BusinessHours}}
+							{{if eq 0 .Weekday}}
+							<li>{{time .Opening}} - {{time .Closing}}</li>
+							{{end}}
+							{{end}}
+						</ul>
+					</small>
+					<p class="text-right">
+					<a href="/businesshour/edit/{{.ID}}#Sonntag">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					</a>
+					</p>
+				</td>
+			</tr>
+			{{end}}
+		</tbody>
+	</table>
 </div>
 {{end}}
