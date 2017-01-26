@@ -7,8 +7,11 @@ import (
 
 func main() {
 
+	// read configuration params from file
+	config := readConfig()
+
 	// create da databse connection pool
-	db := dbOpen()
+	db := dbOpen(config)
 	defer db.Close()
 
 	// prepare template

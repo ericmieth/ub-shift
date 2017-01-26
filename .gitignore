@@ -1,5 +1,5 @@
 *.swp
-config.json
+config.yml
 database/mysql
 database/credentials
 database/dummy_data.sql
