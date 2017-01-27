@@ -31,6 +31,7 @@ func BusinesshourEditHandler(
 	counterID, e := strconv.Atoi(path.Base(r.URL.Path))
 	if e != nil {
 		http.Redirect(w, r, "/counter/list/", http.StatusFound)
+		return
 	}
 
 	// POST request
@@ -137,19 +138,9 @@ func BusinesshourEditHandler(
 
 		}
 
-		//err = counter.EditBranch(db, branchID, inputName, inputLocation)
-		//if !checkErrors(err) {
-		//	http.Redirect(w, r, "/branch/list/", http.StatusFound)
-		//}
-
 	}
 
 	// GET request
-
-	//c, e := counter.ReturnCounter(db, counterID)
-	//if e != nil {
-	//	err = append(err, e)
-	//}
 
 	// information for the counter
 	c, e := counter.ReturnCounter(db, counterID)
